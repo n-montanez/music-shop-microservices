@@ -6,5 +6,9 @@ spring:
           enabled: true
           lower-case-service-id: true
 
+eureka:
+  instance:
+    hostname: gateway
+
 server:
   port: 8080
