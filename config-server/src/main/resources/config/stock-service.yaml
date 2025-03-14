@@ -1,0 +1,6 @@
+eureka:
+  instance:
+    hostname: stock-service
+
+server:
+  port: 8081
