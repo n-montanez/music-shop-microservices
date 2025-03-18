@@ -1,9 +1,11 @@
-package com.montanez.stock_service.model;
+package com.montanez.stock_service.model.artist;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.montanez.stock_service.model.album.Album;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

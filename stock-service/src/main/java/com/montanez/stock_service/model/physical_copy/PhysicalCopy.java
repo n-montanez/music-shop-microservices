@@ -1,7 +1,10 @@
-package com.montanez.stock_service.model;
+package com.montanez.stock_service.model.physical_copy;
 
 import java.io.Serializable;
 import java.util.UUID;
+
+import com.montanez.stock_service.model.album.Album;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

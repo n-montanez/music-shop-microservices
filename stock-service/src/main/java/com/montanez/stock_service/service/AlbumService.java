@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.montanez.stock_service.model.Album;
+import com.montanez.stock_service.model.album.Album;
 import com.montanez.stock_service.repository.AlbumRepository;
 
 import lombok.RequiredArgsConstructor;

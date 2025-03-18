@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
-import com.montanez.stock_service.model.Artist;
+
+import com.montanez.stock_service.model.artist.Artist;
 import com.montanez.stock_service.repository.ArtistRepository;
 
 import lombok.RequiredArgsConstructor;

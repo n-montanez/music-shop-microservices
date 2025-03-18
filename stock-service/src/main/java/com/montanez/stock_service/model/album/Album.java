@@ -1,4 +1,4 @@
-package com.montanez.stock_service.model;
+package com.montanez.stock_service.model.album;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -6,6 +6,9 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.montanez.stock_service.model.artist.Artist;
+import com.montanez.stock_service.model.physical_copy.PhysicalCopy;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

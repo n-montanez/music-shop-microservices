@@ -2,7 +2,8 @@ package com.montanez.stock_service.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.montanez.stock_service.model.Artist;
+
+import com.montanez.stock_service.model.artist.Artist;
 import com.montanez.stock_service.service.ArtistService;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
