@@ -1,12 +1,15 @@
 package com.montanez.stock_service.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
-
 import com.montanez.stock_service.model.album.Album;
+import com.montanez.stock_service.model.album.dto.AlbumDetails;
+import com.montanez.stock_service.model.album.dto.AlbumSimple;
+import com.montanez.stock_service.model.artist.dto.ArtistSimple;
 import com.montanez.stock_service.repository.AlbumRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -14,17 +17,43 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AlbumService {
+
     private final AlbumRepository albumRepository;
 
-    public Album getById(UUID id) {
+    public AlbumDetails getById(UUID id) {
         Optional<Album> foundAlbum = albumRepository.findById(id);
-        if (foundAlbum.isPresent())
-            return foundAlbum.get();
-        // TODO: Handle 404
+        if (foundAlbum.isPresent()) {
+            Album album = foundAlbum.get();
+            AlbumDetails albumDetails = AlbumDetails.builder()
+                    .id(album.getId())
+                    .title(album.getTitle())
+                    .releaseDate(album.getReleaseDate())
+                    .duration(album.getDuration())
+                    .tracks(album.getTracks())
+                    .artist(
+                            ArtistSimple.builder()
+                                    .id(album.getArtist().getId())
+                                    .name(album.getArtist().getName())
+                                    .build())
+                    .build();
+            return albumDetails;
+        }
         return null;
     }
 
-    public List<Album> getAll() {
-        return albumRepository.findAll();
+    public List<AlbumSimple> getAll() {
+        List<Album> albums = albumRepository.findAll();
+        List<AlbumSimple> albumSimples = new ArrayList<>();
+
+        for (Album album : albums) {
+            albumSimples.add(AlbumSimple.builder()
+                    .id(album.getId())
+                    .title(album.getTitle())
+                    .releaseDate(album.getReleaseDate())
+                    .duration(album.getDuration())
+                    .tracks(album.getTracks())
+                    .build());
+        }
+        return albumSimples;
     }
 }
