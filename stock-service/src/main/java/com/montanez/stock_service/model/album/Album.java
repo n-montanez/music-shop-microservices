@@ -5,10 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.montanez.stock_service.model.artist.Artist;
 import com.montanez.stock_service.model.physical_copy.PhysicalCopy;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,7 +36,6 @@ public class Album implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "artist_id")
-    @JsonBackReference
     private Artist artist;
 
     @Column(name = "title")
