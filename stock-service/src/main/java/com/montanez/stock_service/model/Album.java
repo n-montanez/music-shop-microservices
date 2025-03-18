@@ -1,10 +1,11 @@
 package com.montanez.stock_service.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,13 +35,14 @@ public class Album implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "artist_id")
+    @JsonBackReference
     private Artist artist;
 
     @Column(name = "title")
     private String title;
 
     @Column(name = "release_date")
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     @Column(name = "duration")
     private LocalTime duration;

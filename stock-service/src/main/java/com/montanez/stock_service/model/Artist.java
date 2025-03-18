@@ -3,6 +3,7 @@ package com.montanez.stock_service.model;
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,5 +34,6 @@ public class Artist implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "artist")
+    @JsonManagedReference
     private List<Album> albums;
 }
