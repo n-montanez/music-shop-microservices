@@ -56,4 +56,15 @@ public class AlbumService {
         }
         return albumSimples;
     }
+
+    public List<AlbumSimple> searchAlbums(String artistName, Integer releaseYear, String title) {
+        List<Album> albums = albumRepository.searchAlbums(artistName, releaseYear, title);
+        return albums.stream().map(album -> AlbumSimple.builder()
+                .id(album.getId())
+                .title(album.getTitle())
+                .releaseDate(album.getReleaseDate())
+                .duration(album.getDuration())
+                .tracks(album.getTracks())
+                .build()).toList();
+    }
 }

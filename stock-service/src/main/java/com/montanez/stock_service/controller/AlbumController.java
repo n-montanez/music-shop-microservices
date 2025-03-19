@@ -1,6 +1,7 @@
 package com.montanez.stock_service.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.montanez.stock_service.model.album.dto.AlbumDetails;
 import com.montanez.stock_service.model.album.dto.AlbumSimple;
@@ -27,6 +28,16 @@ public class AlbumController {
     @GetMapping("/{id}")
     public ResponseEntity<AlbumDetails> getAlbum(@PathVariable UUID id) {
         return new ResponseEntity<>(albumService.getById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<AlbumSimple>> searchAlbums(
+            @RequestParam(required = false) String artistName,
+            @RequestParam(required = false) Integer releaseYear,
+            @RequestParam(required = false) String title) {
+        return new ResponseEntity<>(
+                albumService.searchAlbums(artistName, releaseYear, title),
+                HttpStatus.OK);
     }
 
 }
