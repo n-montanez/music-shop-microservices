@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+    url: jdbc:postgresql://localhost:5432/music-shop
+    username: ${MUSIC_SHOP_DB_USERNAME}
+    password: ${MUSIC_SHOP_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+eureka:
+  instance:
+    hostname: stock-service
+
+server:
+  port: 8081
