@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.montanez.stock_service.model.artist.Artist;
+import com.montanez.stock_service.model.physical_copy.PhysicalCopy;
 
 @Repository
-public interface ArtistRepository extends JpaRepository<Artist, UUID> {
+public interface PhysicalCopyRepository extends JpaRepository<PhysicalCopy, UUID> {
 
 }
