@@ -20,7 +20,7 @@ import org.springframework.http.HttpStatus;
 public class AlbumController {
     private final AlbumService albumService;
 
-    @GetMapping(value = { "/", "" })
+    @GetMapping
     public ResponseEntity<List<AlbumSimple>> getAllAlbums() {
         return new ResponseEntity<>(albumService.getAll(), HttpStatus.OK);
     }

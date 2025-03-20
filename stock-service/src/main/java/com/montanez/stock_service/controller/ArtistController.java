@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ArtistController {
     private final ArtistService artistService;
 
-    @GetMapping(value = { "/", "" })
+    @GetMapping()
     public ResponseEntity<List<ArtistSimple>> getAllArtists() {
         return new ResponseEntity<>(artistService.getAll(), HttpStatus.OK);
     }
