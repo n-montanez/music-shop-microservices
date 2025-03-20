@@ -75,7 +75,6 @@ public class AlbumService {
 
         if (foundAlbum.isPresent()) {
             Album album = foundAlbum.get();
-            System.out.println("Found album: " + album.getPhysicalCopies().get(0).getMediaType());
             return AlbumWithCopies.builder()
                     .id(albumId)
                     .title(album.getTitle())
