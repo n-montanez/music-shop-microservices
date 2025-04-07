@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.montanez.customer_service.model.dto.CreateCustomer;
-import com.montanez.customer_service.model.dto.CustomerInfo;
+import com.montanez.customer_service.model.auth.CreateCustomer;
+import com.montanez.customer_service.model.auth.LoginRequest;
+import com.montanez.customer_service.model.auth.LoginResponse;
+import com.montanez.customer_service.model.customer.dto.CustomerInfo;
 import com.montanez.customer_service.service.CustomerService;
 
 import jakarta.validation.Valid;
@@ -23,6 +25,12 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<CustomerInfo> register(@Valid @RequestBody CreateCustomer customer) {
         return new ResponseEntity<>(customerService.register(customer), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        String token = customerService.login(loginRequest);
+        return new ResponseEntity<>(new LoginResponse(token), HttpStatus.OK);
     }
 
 }
