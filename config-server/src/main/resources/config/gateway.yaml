@@ -13,5 +13,16 @@ eureka:
 jwt:
   secret: ${JWT_SECRET}
 
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - name: customer-service
+        url: /customer-service/v3/api-docs
+
 server:
   port: 8080
