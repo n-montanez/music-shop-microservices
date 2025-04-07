@@ -42,6 +42,6 @@ public class Customer {
     private LocalDate dob;
 
     @Column(name = "password_hash")
-    @Size(min = 64, max = 64, message = "Password is not properly hashed")
+    @Size(min = 59, max = 60, message = "Password is not properly hashed")
     private String passwordHash;
 }
