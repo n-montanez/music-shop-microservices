@@ -2,6 +2,7 @@ package com.montanez.customer_service.service;
 
 import java.util.Base64;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.crypto.SecretKey;
 
@@ -30,9 +31,9 @@ public class JwtService {
         this.key = Keys.hmacShaKeyFor(secretBytes);
     }
 
-    public String generateToken(String email) {
+    public String generateToken(UUID id) {
         return Jwts.builder()
-                .subject(email)
+                .subject(id.toString())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(key)

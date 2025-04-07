@@ -1,6 +1,7 @@
 package com.montanez.customer_service.service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -55,14 +56,14 @@ public class CustomerService {
             throw new InvalidCredentialsException("Invalid email or password.");
         }
 
-        return jwtService.generateToken(customer.getEmail());
+        return jwtService.generateToken(customer.getId());
     }
 
     public CustomerInfo profile(String authHeader) {
         String token = authHeader.substring(7);
-        String email = jwtService.extractSubject(token);
+        UUID id = UUID.fromString(jwtService.extractSubject(token));
 
-        Optional<Customer> foundCustomer = customerRepository.findByEmail(email);
+        Optional<Customer> foundCustomer = customerRepository.findById(id);
         if (!foundCustomer.isPresent())
             throw new InvalidCredentialsException("Invalid Token. Email does not exist");
 
@@ -70,7 +71,7 @@ public class CustomerService {
         return CustomerInfo
                 .builder()
                 .id(customer.getId())
-                .email(email)
+                .email(customer.getEmail())
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
                 .dob(customer.getDob())
