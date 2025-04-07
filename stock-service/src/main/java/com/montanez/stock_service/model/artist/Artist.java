@@ -13,7 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,11 +31,15 @@ public class Artist implements Serializable {
     @Column(name = "id")
     private UUID id;
 
-    @Max(value = 128, message = "Artist name cannot be longer than 128 characters")
+    @Size(min = 1, max = 128, message = "Artist name cannot be longer than 128 characters")
     @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "artist")
     @JsonManagedReference
     private List<Album> albums;
+
+    public Artist(String name) {
+        this.name = name;
+    }
 }
