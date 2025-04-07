@@ -74,7 +74,6 @@ public class JwtAuthenticationFilter implements WebFilter {
     }
 
     private Mono<Void> unauthorized(ServerWebExchange exchange) {
-        System.out.println("Unauthorized token");
         exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
         return exchange.getResponse().setComplete();
     }

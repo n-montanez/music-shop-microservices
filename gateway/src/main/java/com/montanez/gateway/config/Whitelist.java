@@ -17,8 +17,10 @@ public class Whitelist {
         WHITELIST.put("GET", List.of(
                 "/api-docs/**",
                 "/v3/api-docs/**",
+                "/swagger/**",
                 "/swagger-ui/**",
                 "/swagger-resources/**",
+                "/swagger-ui.html",
                 "/webjars/**",
                 "/customer-service/v3/api-docs/**"));
     }
