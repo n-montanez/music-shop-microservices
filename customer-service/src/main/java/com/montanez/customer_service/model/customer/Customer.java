@@ -1,4 +1,4 @@
-package com.montanez.customer_service.model;
+package com.montanez.customer_service.model.customer;
 
 import java.time.LocalDate;
 import java.util.UUID;

@@ -1,8 +1,9 @@
-package com.montanez.customer_service.model.dto;
+package com.montanez.customer_service.model.auth;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +13,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerInfo {
-    private UUID id;
-
+public class CreateCustomer {
+    @Email
     private String email;
 
     private String firstName;
@@ -22,4 +22,7 @@ public class CustomerInfo {
     private String lastName;
 
     private LocalDate dob;
+
+    @Size(min = 8, message = "Invalid password")
+    private String password;
 }
