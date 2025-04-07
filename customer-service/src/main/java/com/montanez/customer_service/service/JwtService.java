@@ -1,8 +1,9 @@
 package com.montanez.customer_service.service;
 
-import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
+
+import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class JwtService {
     private String secret;
 
     @Getter
-    private Key key;
+    private SecretKey key;
 
     @PostConstruct
     public void init() {
@@ -36,5 +37,14 @@ public class JwtService {
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(key)
                 .compact();
+    }
+
+    public String extractSubject(String token) {
+        return Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getSubject();
     }
 }

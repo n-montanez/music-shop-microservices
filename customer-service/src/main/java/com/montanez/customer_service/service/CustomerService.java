@@ -57,4 +57,23 @@ public class CustomerService {
 
         return jwtService.generateToken(customer.getEmail());
     }
+
+    public CustomerInfo profile(String authHeader) {
+        String token = authHeader.substring(7);
+        String email = jwtService.extractSubject(token);
+
+        Optional<Customer> foundCustomer = customerRepository.findByEmail(email);
+        if (!foundCustomer.isPresent())
+            throw new InvalidCredentialsException("Invalid Token. Email does not exist");
+
+        Customer customer = foundCustomer.get();
+        return CustomerInfo
+                .builder()
+                .id(customer.getId())
+                .email(email)
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .dob(customer.getDob())
+                .build();
+    }
 }

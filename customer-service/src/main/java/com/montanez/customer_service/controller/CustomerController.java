@@ -2,8 +2,10 @@ package com.montanez.customer_service.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +33,11 @@ public class CustomerController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         String token = customerService.login(loginRequest);
         return new ResponseEntity<>(new LoginResponse(token), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<CustomerInfo> getProfile(@RequestHeader("Authorization") String authHeader) {
+        return new ResponseEntity<>(customerService.profile(authHeader), HttpStatus.OK);
     }
 
 }

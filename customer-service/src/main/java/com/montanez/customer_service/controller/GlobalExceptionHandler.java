@@ -32,7 +32,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError> handleStandardException(Exception ex) {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ApiError("An error occurred", LocalDateTime.now(), HttpStatus.INTERNAL_SERVER_ERROR.value()));
+                .body(new ApiError("An error occurred: " + ex.getMessage(), LocalDateTime.now(),
+                        HttpStatus.INTERNAL_SERVER_ERROR.value()));
     }
 
 }
