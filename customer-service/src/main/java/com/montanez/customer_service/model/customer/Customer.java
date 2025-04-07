@@ -1,6 +1,6 @@
-package com.montanez.customer_service.model;
+package com.montanez.customer_service.model.customer;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -39,9 +39,9 @@ public class Customer {
     private String lastName;
 
     @Column(name = "date_of_birth")
-    private Date dob;
+    private LocalDate dob;
 
     @Column(name = "password_hash")
-    @Size(min = 64, max = 64, message = "Password is not properly hashed")
+    @Size(min = 59, max = 60, message = "Password is not properly hashed")
     private String passwordHash;
 }

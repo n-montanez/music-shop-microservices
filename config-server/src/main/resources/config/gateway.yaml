@@ -10,6 +10,9 @@ eureka:
   instance:
     hostname: gateway
 
+jwt:
+  secret: ${JWT_SECRET}
+ 
 springdoc:
   api-docs:
     enabled: true
@@ -18,6 +21,8 @@ springdoc:
     enabled: true
     config-url: /v3/api-docs/swagger-config
     urls:
+      - name: customer-service
+        url: /customer-service/v3/api-docs
       - name: stock-service
         url: /stock-service/v3/api-docs
 
