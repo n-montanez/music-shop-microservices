@@ -32,7 +32,7 @@ public class SecurityConfig {
 
                     Whitelist.getWhitelistedPaths("GET")
                             .forEach(path -> exchange
-                                    .pathMatchers(HttpMethod.POST, path).permitAll());
+                                    .pathMatchers(HttpMethod.GET, path).permitAll());
 
                     exchange.anyExchange().authenticated();
                 })

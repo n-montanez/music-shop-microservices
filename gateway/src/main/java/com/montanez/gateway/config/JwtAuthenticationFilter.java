@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
@@ -32,6 +33,8 @@ public class JwtAuthenticationFilter implements WebFilter {
 
     private SecretKey key;
 
+    private AntPathMatcher pathMatcher = new AntPathMatcher();
+
     @PostConstruct
     public void init() {
         byte[] secretBytes = Base64.getDecoder().decode(secret);
@@ -42,9 +45,11 @@ public class JwtAuthenticationFilter implements WebFilter {
     public @NonNull Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull WebFilterChain chain) {
         String path = exchange.getRequest().getPath().value();
         String method = exchange.getRequest().getMethod().toString();
-
-        if (Whitelist.getWhitelistedPaths(method).contains(path))
-            return chain.filter(exchange);
+        for (String whitelistedPath : Whitelist.getWhitelistedPaths(method)) {
+            if (pathMatcher.match(whitelistedPath, path)) {
+                return chain.filter(exchange);
+            }
+        }
 
         String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 
@@ -69,6 +74,7 @@ public class JwtAuthenticationFilter implements WebFilter {
     }
 
     private Mono<Void> unauthorized(ServerWebExchange exchange) {
+        System.out.println("Unauthorized token");
         exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
         return exchange.getResponse().setComplete();
     }

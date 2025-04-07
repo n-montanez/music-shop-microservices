@@ -14,7 +14,13 @@ public class Whitelist {
                 "/customer-service/customer/login"));
 
         // Whitelisted GET paths
-        WHITELIST.put("GET", List.of());
+        WHITELIST.put("GET", List.of(
+                "/api-docs/**",
+                "/v3/api-docs/**",
+                "/swagger-ui/**",
+                "/swagger-resources/**",
+                "/webjars/**",
+                "/customer-service/v3/api-docs/**"));
     }
 
     public static List<String> getWhitelistedPaths(String method) {
