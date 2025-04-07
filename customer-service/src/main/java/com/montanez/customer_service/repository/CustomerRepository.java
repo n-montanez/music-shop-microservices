@@ -9,4 +9,6 @@ import com.montanez.customer_service.model.customer.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, UUID> {
     public Optional<Customer> findByEmail(String email);
+
+    public boolean existsByEmail(String email);
 }
