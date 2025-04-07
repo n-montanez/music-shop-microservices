@@ -15,6 +15,7 @@ public class Whitelist {
 
         // Whitelisted GET paths
         WHITELIST.put("GET", List.of(
+                "/stock-service/**",
                 "/api-docs/**",
                 "/v3/api-docs/**",
                 "/swagger/**",
